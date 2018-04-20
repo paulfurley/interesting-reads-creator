@@ -34,7 +34,7 @@ def main(argv):
     print('between {} and {}'.format(previous_monday, current_monday))
 
     slug = make_slug(current_monday)
-    filename = make_filename(slug)
+    filename = make_filename(slug, current_monday)
 
     if os.path.exists(filename):
         answer = input('Overwrite {} ? '.format(filename))
@@ -71,13 +71,13 @@ def main(argv):
 
 
 def make_slug(date):
-    return '{date}-interesting-reads-{date}'.format(date=date.isoformat())
+    return 'interesting-reads-{date}'.format(date=date.isoformat())
 
 
-def make_filename(slug):
+def make_filename(slug, date):
     return pjoin(
         '/home/paul/repo/www.paulfurley.com/_posts',
-        '{}.markdown'.format(slug)
+        '{}-{}.markdown'.format(date.isoformat(), slug)
     )
 
 
