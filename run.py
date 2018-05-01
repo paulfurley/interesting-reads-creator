@@ -52,9 +52,10 @@ def main(argv):
             )
         )
 
-        for title, url in get_links_between(previous_monday, current_monday):
+        links = list(get_links_between(previous_monday, current_monday))
+        for i, (title, url) in enumerate(links):
 
-            print('\n{}\n{}'.format(title, url))
+            print('\n{} / {}: {}\n{}'.format(i + 1, len(links), title, url))
             webbrowser.open(url)
             commentary = input('\nthoughts? ')
 
