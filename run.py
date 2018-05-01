@@ -20,7 +20,7 @@ HEADER = (
     'permalink: /{slug}/\n'
     'category: interestingreads\n'
     '---\n\n'
-    '*Interesting reads, {friendly_date}*\n\n'
+    '*Interesting things I read on the Internet this week*\n\n'
     '<!--more-->\n\n'
 )
 
