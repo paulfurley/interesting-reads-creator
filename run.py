@@ -95,11 +95,20 @@ def get_links_between(previous_monday, current_monday):
         if result['error']:
             raise RuntimeError(result['error'])
 
+    pprint(result)
+
     def get_sort_id(id_and_entry):
-        return -id_and_entry[1]['sort_id']
+        return -id_and_entry[1].get('sort_id', 0)
 
     for id_, entry in sorted(result['list'].items(), key=get_sort_id):
-        if to_datetime(entry['time_added']) < midnight(current_monday):
+        try:
+            dt = to_datetime(entry['time_added'])
+        except KeyError:
+            print('Skipping entry with no datetime:')
+            pprint(entry)
+            continue
+
+        if dt < midnight(current_monday):
             # pprint(entry)
 
             title = entry['resolved_title']
